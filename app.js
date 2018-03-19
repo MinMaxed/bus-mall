@@ -8,19 +8,19 @@ Item.catalog = [];
 function Item(filepath, name) {
   this.filepath = filepath;
   this.name = name;
-  Item.Catalog.push(this);
+  Item.catalog.push(this);
 }
 
 
-//number of views
-Item.prototype.views() {
-  //+1 when rendered, push into object
-}
+// //number of views
+// Item.prototype.views() {
+//   //+1 when rendered, push into object
+// }
 
-//number of clicks
-Item.prototype.votes() {
-  //+1 on click, push into object
-}
+// //number of clicks
+// Item.prototype.votes() {
+//   //+1 on click, push into object
+// }
 
 
 // new instances of Items
@@ -38,32 +38,61 @@ new Item('img/pen.jpg', 'pen');
 new Item('img/pet-sweep.jpg', 'pet sweep'); 
 new Item('img/scissors.jpg', 'scissors'); 
 new Item('img/shark.jpg', 'shark'); 
-new Item('img/sweep.jpg', 'sweep'); 
+new Item('img/sweep.png', 'sweep'); 
 new Item('img/tauntaun.jpg', 'tauntaun'); 
 new Item('img/unicorn.jpg', 'unicorn'); 
-new Item('img/usb.jpg', 'usb'); 
+new Item('img/usb.gif', 'usb'); 
 new Item('img/water-can.jpg', 'watering can'); 
 new Item('img/wine-glass.jpg', 'wine glass'); 
 
 //access the element from the DOM
 
 var imgElement = document.getElementById('catalogOption');
+var imgElement2 = document.getElementById('catalogOption2');
+var imgElement3 = document.getElementById('catalogOption3');
 // event listener to check for images on click
 imgElement.addEventListener('click',randomItem);
+imgElement2.addEventListener('click',randomItem);
+imgElement3.addEventListener('click',randomItem);
 
 
-//callback function when an image is clicked
+// //callback function when an image is clicked
 function randomItem() {
   var randomIndex = Math.floor(Math.random()*Item.catalog.length);
+  var randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
+  var randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
+  console.log(randomIndex2);
 
   imgElement.src = Item.catalog[randomIndex].filepath;
   imgElement.alt = Item.catalog[randomIndex].name;
+
+  imgElement2.src = Item.catalog[randomIndex2].filepath;
+  imgElement2.alt = Item.catalog[randomIndex2].name;
+
+  imgElement3.src = Item.catalog[randomIndex3].filepath;
+  imgElement3.alt = Item.catalog[randomIndex3].name;
 }
 
 //when clicked, items will be replaced with 3 random images, none of which were just viewed
 
+// for (i=0, i< 25, i++)
+//   run randomItem,
 
-// each image stores how many times it was viewed, and how many times it was clicked
+//   if Item.catalog[i] =/= previous item, 
+//   run rndItem, 
+
+//   if Item.catalog[i] =/= previous items,
+//   run rnd,
+
+//   if items1, 2, 3, are found, display
+
+
+
+//   pick 3 numbers, pull from array
+//   on click, rerun through array - previously selected numbers
+
+  //after 25 iterations, display all Item.votes and Item.views
+
 
 
 //Loop displays 3 images at a time, and only displays 25 total sets of images
@@ -71,3 +100,4 @@ function randomItem() {
 //after 25 iterations, display each image's total number of clicks and total number of views
 
 // render set on page load
+randomItem();
