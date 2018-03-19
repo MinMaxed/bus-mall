@@ -11,7 +11,7 @@ As a marketing research team member, I:
 As a developer research team member, I:
 
 1 Want to make a Constructor to add items to a catalog
-2 Want to cycle through 3 images each iteration
+2 Want to cycle through 3 images each iteration that'll appear side-by-side-by-side
 3 Want to limit User to a finite number of iterations
 4 Want to force the user to select an image in order to move onto the next iteration
 5 Want to provide MRT with data that's collected from each iteration
