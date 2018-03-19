@@ -1,0 +1,11 @@
+.displayed img {
+  width: 250px;
+}
+.displayed {
+display: block;
+margin: 0 auto;
+}
+
+.displayed li {
+  display: inline-block;
+}

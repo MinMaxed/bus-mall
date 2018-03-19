@@ -55,13 +55,22 @@ imgElement.addEventListener('click',randomItem);
 imgElement2.addEventListener('click',randomItem);
 imgElement3.addEventListener('click',randomItem);
 
-
+var randomIndex = 0;
+var randomIndex2 = 0;
+var randomIndex3 = 0;
 // //callback function when an image is clicked
 function randomItem() {
-  var randomIndex = Math.floor(Math.random()*Item.catalog.length);
-  var randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
-  var randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
-  console.log(randomIndex2);
+  randomIndex = Math.floor(Math.random()*Item.catalog.length);
+  randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
+  randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
+  // console.log(randomIndex2);
+
+  while (randomIndex === randomIndex2) {
+    randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
+
+  } while (randomIndex3 === randomIndex || randomIndex3 === randomIndex2) {
+    randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
+  }
 
   imgElement.src = Item.catalog[randomIndex].filepath;
   imgElement.alt = Item.catalog[randomIndex].name;
@@ -91,7 +100,7 @@ function randomItem() {
 //   pick 3 numbers, pull from array
 //   on click, rerun through array - previously selected numbers
 
-  //after 25 iterations, display all Item.votes and Item.views
+//after 25 iterations, display all Item.votes and Item.views
 
 
 
