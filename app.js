@@ -2,7 +2,32 @@
 
 //catalog/array of available items
 Item.catalog = [];
+
+var previousValues = [];
+
+var itemNames = [];
+
+var itemVotes = [];
+
 Item.cycles = 0;
+
+// var randomIndex = 0;
+// var randomIndex2 = 0;
+// var randomIndex3 = 0;
+
+
+//access the element from the DOM
+
+var imgElement = document.getElementById('catalogOption');
+var imgElement2 = document.getElementById('catalogOption2');
+var imgElement3 = document.getElementById('catalogOption3');
+
+var sectionElement = document.getElementById('imagesDisplayed');
+
+// event listener to check for images on click
+// imgElement.addEventListener('click',handleClick);
+// imgElement2.addEventListener('click',handleClick);
+// imgElement3.addEventListener('click',handleClick);
 
 var results = document.getElementById('results');
 // Item Constructor to generate items and put them into the catalog
@@ -13,6 +38,7 @@ function Item(filepath, name) {
   this.views = 0;
   this.votes = 0;
   Item.catalog.push(this);
+  itemNames.push(this.name);
 }
 
 // new instances of Items
@@ -38,43 +64,38 @@ new Item('img/water-can.jpg', 'watering can');
 new Item('img/wine-glass.jpg', 'wine glass');
 
 
-//access the element from the DOM
-
-var imgElement = document.getElementById('catalogOption');
-var imgElement2 = document.getElementById('catalogOption2');
-var imgElement3 = document.getElementById('catalogOption3');
-// event listener to check for images on click
-imgElement.addEventListener('click',handleClick);
-imgElement2.addEventListener('click',handleClick);
-imgElement3.addEventListener('click',handleClick);
-
-var randomIndex = 0;
-var randomIndex2 = 0;
-var randomIndex3 = 0;
-var previousValues = [];
-
 // grander callback that'll grab clicks as well as run the random image producer
 function handleClick(event) {
 
-  var currentTarget = event.target.currentSrc.slice(46);
+  Item.cycles++;
+  console.log(event.target.alt);
 
-  for ( var i = 0; i < Item.catalog.length; i++) {
-    if (Item.catalog[i].filepath === currentTarget) {
+  // var currentTarget = event.target.currentSrc.slice(46);
+  for ( var i in Item.catalog) {
+    if (event.target.alt === Item.catalog[i].name) {
+      console.log(event.target.alt);
       Item.catalog[i].votes++;
-      // console.log(Item.catalog[i].votes);
     }
   }
-  Item.cycles++;
 
-  if (Item.cycles < 25) {
+  if (Item.cycles < 5) {
     randomItem();
-  } else if (Item.cycles === 25) {
+  } else if (Item.cycles === 5) {
+    sectionElement.removeEventListener('click', handleClick);
+
     displayResults();
+
+    // console.log(itemVotes[i]);
+    updateVotes();
+
+    renderChart();
   }
 
   function displayResults() {
     for (var i = 0; i < Item.catalog.length; i++) {
       var liElement = document.createElement('li');
+
+      console.log(Item.catalog[i]);
 
       liElement.textContent = (Item.catalog[i].name + ' has ' + Item.catalog[i].votes + ' votes, out of ' + Item.catalog[i].views + ' total views.');
 
@@ -83,12 +104,14 @@ function handleClick(event) {
 
   }
 }
+
+
 // //callback function when an image is clicked
 function randomItem() {
 
-  randomIndex = Math.floor(Math.random()*Item.catalog.length);
-  randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
-  randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
+  var randomIndex = Math.floor(Math.random()*Item.catalog.length);
+  var randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
+  var randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
 
   //checking previous numbers & each other
   while (randomIndex === randomIndex2
@@ -97,7 +120,6 @@ function randomItem() {
     || previousValues.includes(randomIndex)
     || previousValues.includes(randomIndex2)
     || previousValues.includes(randomIndex3)) {
-    console.log('duplicate was caught');
 
     randomIndex = Math.floor(Math.random()*Item.catalog.length);
     randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
@@ -119,7 +141,47 @@ function randomItem() {
   Item.catalog[randomIndex3].views++;
 
 
-  console.log(Item.catalog[randomIndex].views);
 }
 
+
+function updateVotes() {
+  for (var i in Item.catalog) {
+    itemVotes[i] = Item.catalog[i].votes;
+  }
+}
+
+sectionElement.addEventListener('click', handleClick);
+
+
 randomItem();
+
+// CHART STUFF
+
+function renderChart() {
+  //access canvas element from the DOM
+  var context = document.getElementById('catalog-chart').getContext('2d');
+
+  var arrayOfColors = [];
+
+  new Chart(context, {
+    type: 'bar',
+    data: {
+      labels: itemNames,
+      datasets: [{
+        label: 'Votes Per Item',
+        data: itemVotes,
+        backgroundColor: arrayOfColors,
+      }]
+
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}

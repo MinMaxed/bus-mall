@@ -45,22 +45,22 @@ nav ul li {
   background-color: rgb(9, 255, 0);
 }
 
-.imagesDisplayed {
+#imagesDisplayed {
   float:right;
   width:70%;
   background-color: rgb(255, 123, 0);
 }
 
-.imagesDisplayed img {
+#imagesDisplayed img {
   width: 250px;
 }
 
-.imagesDisplayed {
+#imagesDisplayed {
 display: block;
 margin: 0 auto;
 }
 
-.imagesDisplayed li {
+#imagesDisplayed li {
   list-style-type: none;
   display: inline-block;
 }
