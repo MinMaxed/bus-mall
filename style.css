@@ -9,11 +9,16 @@ body {
 header {
   display: inline-block;
   width: 100%;
+  background-color: violet;
 }
 
 #card1 {
   float: left;
   height: 100%;
+}
+
+#card1 p {
+  display:inline-block;
 }
 
 #clickables {
@@ -37,12 +42,13 @@ nav ul li {
 #resultsChart {
   float: left;
   width:30%;
-  /* background-color: rgb(9, 255, 0); */
+  background-color: rgb(9, 255, 0);
 }
 
 .imagesDisplayed {
   float:right;
   width:70%;
+  background-color: rgb(255, 123, 0);
 }
 
 .imagesDisplayed img {
@@ -61,11 +67,13 @@ margin: 0 auto;
 
 #votes {
 float:right;
-/* background-color: aqua; */
+display: inline-block;
+background-color: aqua;
 }
 
 #info p {
   width:70%;
   display: inline-block;
-  /* background-color: yellow; */
+  float: right;
+  background-color: yellow;
 }
