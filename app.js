@@ -65,23 +65,25 @@ function handleClick(event) {
     }
   }
   Item.cycles++;
-  
+
   if (Item.cycles < 25) {
     randomItem();
-  } else {
+  } else if (Item.cycles === 25) {
     displayResults();
-  }
-}
-
-function displayResults() {
-  for (var i = 0; i < Item.catalog.length; i++) {
-    var liElement = document.createElement('li');
-
-    liElement.textContent = (Item.catalog[i].name + ' has ' + Item.catalog[i].votes + ' votes, out of ' + Item.catalog[i].views + ' total views.');
-
-    results.appendChild(liElement);
+  } else {
+    Item.cycles++;
   }
 
+  function displayResults() {
+    for (var i = 0; i < Item.catalog.length; i++) {
+      var liElement = document.createElement('li');
+
+      liElement.textContent = (Item.catalog[i].name + ' has ' + Item.catalog[i].votes + ' votes, out of ' + Item.catalog[i].views + ' total views.');
+
+      results.appendChild(liElement);
+    }
+
+  }
 }
 // //callback function when an image is clicked
 function randomItem() {

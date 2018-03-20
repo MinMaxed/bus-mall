@@ -37,7 +37,7 @@ nav ul li {
 #resultsChart {
   float: left;
   width:30%;
-  /* background-color: blue; */
+  /* background-color: rgb(9, 255, 0); */
 }
 
 .imagesDisplayed {
@@ -59,10 +59,13 @@ margin: 0 auto;
   display: inline-block;
 }
 
-.votes {
+#votes {
 float:right;
+/* background-color: aqua; */
 }
 
-.info {
+#info p {
+  width:70%;
   display: inline-block;
+  /* background-color: yellow; */
 }
