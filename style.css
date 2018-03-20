@@ -7,5 +7,6 @@ margin: 0 auto;
 }
 
 .displayed li {
+  list-style-type: none;
   display: inline-block;
 }
