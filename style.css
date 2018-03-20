@@ -39,11 +39,23 @@ nav ul li {
   margin:0;
 }
 
+
 #resultsChart {
   float: left;
-  width:30%;
+  width:27%;
   background-color: rgb(9, 255, 0);
 }
+
+#results {
+  list-style-type:none;
+  margin-left: .5em;
+
+}
+
+#results li {
+  padding:.5em;
+}
+
 
 #imagesDisplayed {
   float:right;
