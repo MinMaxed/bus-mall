@@ -11,11 +11,6 @@ var itemVotes = [];
 
 Item.cycles = 0;
 
-// var randomIndex = 0;
-// var randomIndex2 = 0;
-// var randomIndex3 = 0;
-
-
 //access the element from the DOM
 
 var imgElement = document.getElementById('catalogOption');
@@ -68,19 +63,17 @@ new Item('img/wine-glass.jpg', 'wine glass');
 function handleClick(event) {
 
   Item.cycles++;
-  console.log(event.target.alt);
 
   // var currentTarget = event.target.currentSrc.slice(46);
-  for ( var i in Item.catalog) {
+  for (var i in Item.catalog) {
     if (event.target.alt === Item.catalog[i].name) {
-      console.log(event.target.alt);
       Item.catalog[i].votes++;
     }
   }
 
-  if (Item.cycles < 5) {
+  if (Item.cycles < 25) {
     randomItem();
-  } else if (Item.cycles === 5) {
+  } else if (Item.cycles === 25) {
     sectionElement.removeEventListener('click', handleClick);
 
     displayResults();
@@ -105,13 +98,12 @@ function handleClick(event) {
   }
 }
 
-
 // //callback function when an image is clicked
 function randomItem() {
 
-  var randomIndex = Math.floor(Math.random()*Item.catalog.length);
-  var randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
-  var randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
+  var randomIndex = Math.floor(Math.random() * Item.catalog.length);
+  var randomIndex2 = Math.floor(Math.random() * Item.catalog.length);
+  var randomIndex3 = Math.floor(Math.random() * Item.catalog.length);
 
   //checking previous numbers & each other
   while (randomIndex === randomIndex2
@@ -121,9 +113,9 @@ function randomItem() {
     || previousValues.includes(randomIndex2)
     || previousValues.includes(randomIndex3)) {
 
-    randomIndex = Math.floor(Math.random()*Item.catalog.length);
-    randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
-    randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
+    randomIndex = Math.floor(Math.random() * Item.catalog.length);
+    randomIndex2 = Math.floor(Math.random() * Item.catalog.length);
+    randomIndex3 = Math.floor(Math.random() * Item.catalog.length);
   }
   previousValues.splice(0, 3, randomIndex, randomIndex2, randomIndex3);
 
@@ -140,16 +132,16 @@ function randomItem() {
   imgElement3.alt = Item.catalog[randomIndex3].name;
   Item.catalog[randomIndex3].views++;
 
-
 }
 
-
+//push votes into the objects
 function updateVotes() {
   for (var i in Item.catalog) {
     itemVotes[i] = Item.catalog[i].votes;
   }
 }
 
+//connect callback function to DOM
 sectionElement.addEventListener('click', handleClick);
 
 
@@ -161,7 +153,12 @@ function renderChart() {
   //access canvas element from the DOM
   var context = document.getElementById('catalog-chart').getContext('2d');
 
-  var arrayOfColors = [];
+  var arrayOfColors = ['#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3',];
+
+  // for (var i = 0, i < catalog.length, i++)
+  //     set backgroundColor = arrayOfColors[j],
+  // if ( j > arrayofColors.lenght)
+  // reset arrayOfColors;
 
   new Chart(context, {
     type: 'bar',
