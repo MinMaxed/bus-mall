@@ -3,6 +3,8 @@
 //catalog/array of available items
 Item.catalog = [];
 Item.cycles = 0;
+
+var results = document.getElementById('results');
 // Item Constructor to generate items and put them into the catalog
 
 function Item(filepath, name) {
@@ -12,8 +14,6 @@ function Item(filepath, name) {
   this.votes = 0;
   Item.catalog.push(this);
 }
-
-
 
 // //number of clicks
 // Item.prototype.votes() {
@@ -58,7 +58,7 @@ var randomIndex2 = 0;
 var randomIndex3 = 0;
 var previousValues = [];
 
-// slice
+// grander callback that'll grab clicks as well as run the random image producer
 function handleClick(event) {
 
   var currentTarget = event.target.currentSrc.slice(46);
@@ -68,21 +68,26 @@ function handleClick(event) {
       Item.catalog[i].votes++;
       // console.log(Item.catalog[i].votes);
     }
-  } 
+  }
   Item.cycles++;
   if (Item.cycles < 5) {
     randomItem();
   } else {
-
-    }
+    displayResults();
   }
-
 }
 
 function displayResults() {
+  for (var i = 0; i < Item.catalog.length; i++) {
+    var liElement = document.createElement('li');
 
-      
+    liElement.textContent = (Item.catalog[i].name + ' has ' + Item.catalog[i].votes + ' votes, out of ' + Item.catalog[i].views + ' total views.');
 
+    results.appendChild(liElement);
+
+  }
+
+}
 // //callback function when an image is clicked
 function randomItem() {
 
@@ -122,31 +127,3 @@ function randomItem() {
 }
 
 randomItem();
-
-//when clicked, items will be replaced with 3 random images, none of which were just viewed
-
-// for (i=0, i< 25, i++)
-//   run randomItem,
-
-//   if Item.catalog[i] =/= previous item,
-//   run rndItem,
-
-//   if Item.catalog[i] =/= previous items,
-//   run rnd,
-
-//   if items1, 2, 3, are found, display
-
-
-
-//   pick 3 numbers, pull from array
-//   on click, rerun through array - previously selected numbers
-
-//after 25 iterations, display all Item.votes and Item.views
-
-
-
-//Loop displays 3 images at a time, and only displays 25 total sets of images
-
-//after 25 iterations, display each image's total number of clicks and total number of views
-
-// render set on page load
