@@ -15,11 +15,6 @@ function Item(filepath, name) {
   Item.catalog.push(this);
 }
 
-// //number of clicks
-// Item.prototype.votes() {
-//   //+1 on click, push into object
-// }
-
 // new instances of Items
 new Item('img/bag.jpg', 'robot bag');
 new Item('img/banana.jpg', 'Banana');
@@ -70,7 +65,8 @@ function handleClick(event) {
     }
   }
   Item.cycles++;
-  if (Item.cycles < 5) {
+  
+  if (Item.cycles < 25) {
     randomItem();
   } else {
     displayResults();
@@ -84,7 +80,6 @@ function displayResults() {
     liElement.textContent = (Item.catalog[i].name + ' has ' + Item.catalog[i].votes + ' votes, out of ' + Item.catalog[i].views + ' total views.');
 
     results.appendChild(liElement);
-
   }
 
 }
