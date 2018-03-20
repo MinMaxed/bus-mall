@@ -3,6 +3,7 @@
 //catalog/array of available items
 Item.catalog = [];
 Item.cycles = 0;
+var itemVotes = [];
 
 var results = document.getElementById('results');
 // Item Constructor to generate items and put them into the catalog
@@ -56,19 +57,19 @@ var previousValues = [];
 // grander callback that'll grab clicks as well as run the random image producer
 function handleClick(event) {
 
-  var currentTarget = event.target.currentSrc.slice(46);
 
-  for ( var i = 0; i < Item.catalog.length; i++) {
-    if (Item.catalog[i].filepath === currentTarget) {
+  for (var i in Item.catalog) {
+    if (event.target.alt === Item.catalog[i].name) {
       Item.catalog[i].votes++;
-      // console.log(Item.catalog[i].votes);
     }
   }
+
   Item.cycles++;
 
   if (Item.cycles < 25) {
     randomItem();
   } else if (Item.cycles === 25) {
+    updateVotes();
     displayResults();
   }
 
@@ -120,6 +121,12 @@ function randomItem() {
 
 
   console.log(Item.catalog[randomIndex].views);
+}
+
+function updateVotes() {
+  for (var i in Item.catalog) {
+    itemVotes[i] = Item.catalog[i].votes;
+  }
 }
 
 randomItem();
