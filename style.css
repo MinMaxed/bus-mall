@@ -39,6 +39,7 @@ nav ul li {
   margin:0;
 }
 
+
 #resultsChart {
   float: left;
   width:27%;
@@ -48,30 +49,30 @@ nav ul li {
 #results {
   list-style-type:none;
   margin-left: .5em;
-  /* margin-top: .5em; */
-  /* padding: .5em; */
+
 }
 
 #results li {
   padding:.5em;
 }
 
-.imagesDisplayed {
+
+#imagesDisplayed {
   float:right;
   width:70%;
   background-color: rgb(255, 123, 0);
 }
 
-.imagesDisplayed img {
+#imagesDisplayed img {
   width: 250px;
 }
 
-.imagesDisplayed {
+#imagesDisplayed {
 display: block;
 margin: 0 auto;
 }
 
-.imagesDisplayed li {
+#imagesDisplayed li {
   list-style-type: none;
   display: inline-block;
 }
