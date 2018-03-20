@@ -70,8 +70,6 @@ function handleClick(event) {
     randomItem();
   } else if (Item.cycles === 25) {
     displayResults();
-  } else {
-    Item.cycles++;
   }
 
   function displayResults() {
@@ -99,6 +97,7 @@ function randomItem() {
     || previousValues.includes(randomIndex)
     || previousValues.includes(randomIndex2)
     || previousValues.includes(randomIndex3)) {
+    console.log('duplicate was caught');
 
     randomIndex = Math.floor(Math.random()*Item.catalog.length);
     randomIndex2 = Math.floor(Math.random()*Item.catalog.length);

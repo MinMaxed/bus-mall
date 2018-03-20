@@ -66,14 +66,19 @@ margin: 0 auto;
 }
 
 #votes {
-float:right;
+  float:right;
+}
+#votes {
 display: inline-block;
 background-color: aqua;
 }
 
 #info p {
+  float: right;
+}
+
+#info p {
   width:70%;
   display: inline-block;
-  float: right;
   background-color: yellow;
 }
