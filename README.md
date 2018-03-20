@@ -1,13 +1,7 @@
 # bus-mall
 
 project description: 
-Cycle various randomly generated images, 3 at a time, with no immediate repeats. After 25 cycles, the Results of the image's appears and votes will be displayed in a list form, as well as a colored chart at the bottom. 
-
-
-
-3/20:
-Updated to include a Chart display, and made the Results more legible. 
-
+make a thing that'll cycle through 3 images at a time. when you click on one it'll increase vote count and produce 3 images, none of which are supposed to have been in the group you were just previously viewing. 
 
 
 3/19 Updates:
