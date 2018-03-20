@@ -2,28 +2,18 @@
 
 //catalog/array of available items
 Item.catalog = [];
-
-// var previousvalue1 = 0;
-// var previousvalue2 = 0;
-// var previousvalue3 = 0;
-
-
-
-
+Item.cycles = 0;
 // Item Constructor to generate items and put them into the catalog
 
 function Item(filepath, name) {
   this.filepath = filepath;
   this.name = name;
+  this.views = 0;
+  this.votes = 0;
   Item.catalog.push(this);
-  // this.previouslyShown === false;
 }
 
 
-// //number of views
-// Item.prototype.views() {
-//   //+1 when rendered, push into object
-// }
 
 // //number of clicks
 // Item.prototype.votes() {
@@ -52,76 +42,86 @@ new Item('img/usb.gif', 'usb');
 new Item('img/water-can.jpg', 'watering can');
 new Item('img/wine-glass.jpg', 'wine glass');
 
+
 //access the element from the DOM
 
 var imgElement = document.getElementById('catalogOption');
 var imgElement2 = document.getElementById('catalogOption2');
 var imgElement3 = document.getElementById('catalogOption3');
 // event listener to check for images on click
-imgElement.addEventListener('click',randomItem);
-imgElement2.addEventListener('click',randomItem);
-imgElement3.addEventListener('click',randomItem);
+imgElement.addEventListener('click',handleClick);
+imgElement2.addEventListener('click',handleClick);
+imgElement3.addEventListener('click',handleClick);
 
 var randomIndex = 0;
 var randomIndex2 = 0;
 var randomIndex3 = 0;
 var previousValues = [];
 
+// slice
+function handleClick(event) {
+
+  var currentTarget = event.target.currentSrc.slice(46);
+
+  for ( var i = 0; i < Item.catalog.length; i++) {
+    if (Item.catalog[i].filepath === currentTarget) {
+      Item.catalog[i].votes++;
+      // console.log(Item.catalog[i].votes);
+    }
+  } 
+  Item.cycles++;
+  if (Item.cycles < 5) {
+    randomItem();
+  } else {
+
+    }
+  }
+
+}
+
+function displayResults() {
+
+      
+
 // //callback function when an image is clicked
 function randomItem() {
+
   randomIndex = Math.floor(Math.random()*Item.catalog.length);
   randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
   randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
-  
+
+  //checking previous numbers & each other
   while (randomIndex === randomIndex2
     || randomIndex3 === randomIndex
     || randomIndex3 === randomIndex2
     || previousValues.includes(randomIndex)
     || previousValues.includes(randomIndex2)
     || previousValues.includes(randomIndex3)) {
+
     randomIndex = Math.floor(Math.random()*Item.catalog.length);
     randomIndex2 = Math.floor(Math.random()*Item.catalog.length);
     randomIndex3 = Math.floor(Math.random()*Item.catalog.length);
-
   }
   previousValues.splice(0, 3, randomIndex, randomIndex2, randomIndex3);
 
   imgElement.src = Item.catalog[randomIndex].filepath;
   imgElement.alt = Item.catalog[randomIndex].name;
+  Item.catalog[randomIndex].views++;
 
   imgElement2.src = Item.catalog[randomIndex2].filepath;
   imgElement2.alt = Item.catalog[randomIndex2].name;
+  Item.catalog[randomIndex2].views++;
+
 
   imgElement3.src = Item.catalog[randomIndex3].filepath;
   imgElement3.alt = Item.catalog[randomIndex3].name;
+  Item.catalog[randomIndex3].views++;
+
+
+  console.log(Item.catalog[randomIndex].views);
 }
 
-
-
-
-
-
-  // while (newIndexes.length < 3) {
-  //   var newIndex = randomIndex;
-  //   var isUnique = true;
-  
-  
-  //   for (var i = 0; i < previousValues.length; i++) {
-  
-  //     if (previousValues[i] === newIndex) {
-  //       isUnique = false;
-  //     }
-  //   }
-  
-  //   for ( i < newIndexes.length) {
-  //     if (newIndexes[i] === newIndex)
-  
-  //       if(isUnique) {
-  //         newIndexes.push(newIndex);
-  //       }
-  //   }
-  // }
-  randomItem();
+randomItem();
 
 //when clicked, items will be replaced with 3 random images, none of which were just viewed
 
