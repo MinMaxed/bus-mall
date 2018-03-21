@@ -36,28 +36,55 @@ function Item(filepath, name) {
   itemNames.push(this.name);
 }
 
-// new instances of Items
-new Item('img/bag.jpg', 'robot bag');
-new Item('img/banana.jpg', 'Banana');
-new Item('img/bathroom.jpg', 'Bathroom');
-new Item('img/boots.jpg', 'boots');
-new Item('img/breakfast.jpg', 'breakfast');
-new Item('img/bubblegum.jpg', 'bubblegum');
-new Item('img/chair.jpg', 'chair');
-new Item('img/cthulhu.jpg', 'cthulhu');
-new Item('img/dog-duck.jpg', 'dog duck');
-new Item('img/dragon.jpg', 'dragon');
-new Item('img/pen.jpg', 'pen');
-new Item('img/pet-sweep.jpg', 'pet sweep');
-new Item('img/scissors.jpg', 'scissors');
-new Item('img/shark.jpg', 'shark');
-new Item('img/sweep.png', 'sweep');
-new Item('img/tauntaun.jpg', 'tauntaun');
-new Item('img/unicorn.jpg', 'unicorn');
-new Item('img/usb.gif', 'usb');
-new Item('img/water-can.jpg', 'watering can');
-new Item('img/wine-glass.jpg', 'wine glass');
+//when to store
+// immediately on page load
+  //Pro: they are there for next time
+  // Con: Zeros
 
+// At the very end of page load
+  //Pro: stores all the values of clicks and views
+  //cons: partial data not captured
+
+// after a pic load/click
+  // pro: consistent and acurate data
+  // con: potential scale issue (huge data)
+  // con: Chatter (lots of actions happening)
+
+
+
+// new instances of Items
+function setupPictures() {
+
+  var picAsString = localStorage.getItem('pictures');
+  var usablePics = JSON.parse(picAsString);
+  if (usablePics && usablePics.length) {
+    Item.catalog = usablePics;
+    return;
+  }
+
+  console.log('doing it the hardway');
+
+  new Item('img/bag.jpg', 'robot bag');
+  new Item('img/banana.jpg', 'Banana');
+  new Item('img/bathroom.jpg', 'Bathroom');
+  new Item('img/boots.jpg', 'boots');
+  new Item('img/breakfast.jpg', 'breakfast');
+  new Item('img/bubblegum.jpg', 'bubblegum');
+  new Item('img/chair.jpg', 'chair');
+  new Item('img/cthulhu.jpg', 'cthulhu');
+  new Item('img/dog-duck.jpg', 'dog duck');
+  new Item('img/dragon.jpg', 'dragon');
+  new Item('img/pen.jpg', 'pen');
+  new Item('img/pet-sweep.jpg', 'pet sweep');
+  new Item('img/scissors.jpg', 'scissors');
+  new Item('img/shark.jpg', 'shark');
+  new Item('img/sweep.png', 'sweep');
+  new Item('img/tauntaun.jpg', 'tauntaun');
+  new Item('img/unicorn.jpg', 'unicorn');
+  new Item('img/usb.gif', 'usb');
+  new Item('img/water-can.jpg', 'watering can');
+  new Item('img/wine-glass.jpg', 'wine glass');
+}
 
 // grander callback that'll grab clicks as well as run the random image producer
 function handleClick(event) {
@@ -94,7 +121,6 @@ function handleClick(event) {
 
       results.appendChild(liElement);
     }
-
   }
 }
 
@@ -144,6 +170,8 @@ function updateVotes() {
 //connect callback function to DOM
 sectionElement.addEventListener('click', handleClick);
 
+setupPictures();
+
 
 randomItem();
 
@@ -153,9 +181,11 @@ function renderChart() {
   //access canvas element from the DOM
   var context = document.getElementById('catalog-chart').getContext('2d');
 
+  // var randomColor = '#' + (Math.random() * 16777215).toString(16);
+
   var arrayOfColors = ['#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3',];
 
-  // for (var i = 0, i < catalog.length, i++)
+  // for (var i = 0, i < Item.catalog.length, i++)
   //     set backgroundColor = arrayOfColors[j],
   // if ( j > arrayofColors.lenght)
   // reset arrayOfColors;
