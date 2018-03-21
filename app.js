@@ -2,12 +2,10 @@
 
 //catalog/array of available items
 Item.catalog = [];
-
 var previousValues = [];
-
 var itemNames = [];
-
 var itemVotes = [];
+var maxVotes = 25;
 
 Item.cycles = 0;
 
@@ -38,24 +36,24 @@ function Item(filepath, name) {
 
 //when to store
 // immediately on page load
-  //Pro: they are there for next time
-  // Con: Zeros
+//Pro: they are there for next time
+// Con: Zeros
 
 // At the very end of page load
-  //Pro: stores all the values of clicks and views
-  //cons: partial data not captured
+//Pro: stores all the values of clicks and views
+//cons: partial data not captured
 
 // after a pic load/click
-  // pro: consistent and acurate data
-  // con: potential scale issue (huge data)
-  // con: Chatter (lots of actions happening)
+// pro: consistent and acurate data
+// con: potential scale issue (huge data)
+// con: Chatter (lots of actions happening)
 
 
 
 // new instances of Items
 function setupPictures() {
 
-  var picAsString = localStorage.getItem('pictures');
+  var picAsString = localStorage.getItem('items');
   var usablePics = JSON.parse(picAsString);
   if (usablePics && usablePics.length) {
     Item.catalog = usablePics;
@@ -98,16 +96,18 @@ function handleClick(event) {
     }
   }
 
-  if (Item.cycles < 25) {
+  if (Item.cycles < maxVotes) {
     randomItem();
-  } else if (Item.cycles === 25) {
+  } else if (Item.cycles === maxVotes) {
+
+
     sectionElement.removeEventListener('click', handleClick);
 
     displayResults();
-
     // console.log(itemVotes[i]);
     updateVotes();
 
+    complete();
     renderChart();
   }
 
@@ -169,6 +169,14 @@ function updateVotes() {
 
 //connect callback function to DOM
 sectionElement.addEventListener('click', handleClick);
+
+
+function complete() {
+  //save to local storage
+  var saveResults = JSON.stringify(Item.catalog);
+  localStorage.setItem('items', saveResults);
+}
+
 
 setupPictures();
 
