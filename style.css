@@ -7,8 +7,9 @@ body {
 }
 
 header {
-  display: inline-block;
-  width: 100%;
+  display: block;
+  width: 100vw;
+  height: 70px;
   background-color: violet;
 }
 
@@ -24,7 +25,6 @@ header {
 #clickables {
   float: right;
   height: 100%;
-  
 }
 
 nav ul {
@@ -40,27 +40,18 @@ nav ul li {
 }
 
 
-#resultsChart {
-  float: left;
-  width:27%;
-  background-color: rgb(9, 255, 0);
-}
-
-#results {
-  list-style-type:none;
-  margin-left: .5em;
-
-}
-
-#results li {
-  padding:.5em;
-}
 
 
 #imagesDisplayed {
-  float:right;
-  width:70%;
-  background-color: rgb(255, 123, 0);
+/* margin: auto; */
+/* display: inline-block; */
+width: 100%;
+background-color: rgb(255, 123, 0);
+}
+
+.imageslots {
+  width: 33%;
+  display: inline-block;
 }
 
 #imagesDisplayed img {
@@ -68,15 +59,26 @@ nav ul li {
   height: 250px;
 }
 
-#imagesDisplayed {
-display: block;
-margin: 0 auto;
+#catalogOption {
+  margin: auto;
+  display: block;
 }
 
-#imagesDisplayed li {
-  list-style-type: none;
-  display: inline-block;
+#catalogOption2 {
+  margin: auto;
+  display: block;
+
 }
+
+#catalogOption3 {
+  margin: auto;
+  display: block;
+
+}
+
+
+
+
 
 #votes {
   float:right;
