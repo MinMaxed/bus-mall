@@ -3,7 +3,7 @@
 //catalog/array of available items
 Item.catalog = [];
 var previousValues = [];
-var itemNames = [];
+// var itemNames = [];
 var itemVotes = [];
 var maxVotes = 25;
 
@@ -22,7 +22,7 @@ var sectionElement = document.getElementById('imagesDisplayed');
 // imgElement2.addEventListener('click',handleClick);
 // imgElement3.addEventListener('click',handleClick);
 
-var results = document.getElementById('results');
+// var results = document.getElementById('results');
 // Item Constructor to generate items and put them into the catalog
 
 function Item(filepath, name) {
@@ -63,26 +63,26 @@ function setupPictures() {
 
   console.log('doing it the hardway');
 
-  new Item('img/bag.jpg', 'robot bag');
+  new Item('img/bag.jpg', 'Robot Bag');
   new Item('img/banana.jpg', 'Banana');
   new Item('img/bathroom.jpg', 'Bathroom');
-  new Item('img/boots.jpg', 'boots');
-  new Item('img/breakfast.jpg', 'breakfast');
-  new Item('img/bubblegum.jpg', 'bubblegum');
-  new Item('img/chair.jpg', 'chair');
-  new Item('img/cthulhu.jpg', 'cthulhu');
-  new Item('img/dog-duck.jpg', 'dog duck');
-  new Item('img/dragon.jpg', 'dragon');
-  new Item('img/pen.jpg', 'pen');
-  new Item('img/pet-sweep.jpg', 'pet sweep');
-  new Item('img/scissors.jpg', 'scissors');
+  new Item('img/boots.jpg', 'Boots');
+  new Item('img/breakfast.jpg', 'Breakfast');
+  new Item('img/bubblegum.jpg', 'Bubblegum');
+  new Item('img/chair.jpg', 'Chair');
+  new Item('img/cthulhu.jpg', 'Cthulhu');
+  new Item('img/dog-duck.jpg', 'Dog Duck');
+  new Item('img/dragon.jpg', 'Dragon');
+  new Item('img/pen.jpg', 'Pen');
+  new Item('img/pet-sweep.jpg', 'Pet Sweep');
+  new Item('img/scissors.jpg', 'Scissors');
   new Item('img/shark.jpg', 'shark');
-  new Item('img/sweep.png', 'sweep');
-  new Item('img/tauntaun.jpg', 'tauntaun');
-  new Item('img/unicorn.jpg', 'unicorn');
-  new Item('img/usb.gif', 'usb');
-  new Item('img/water-can.jpg', 'watering can');
-  new Item('img/wine-glass.jpg', 'wine glass');
+  new Item('img/sweep.png', 'Sweep');
+  new Item('img/tauntaun.jpg', 'Tauntaun');
+  new Item('img/unicorn.jpg', 'Unicorn');
+  new Item('img/usb.gif', 'Usb');
+  new Item('img/water-can.jpg', 'Watering Can');
+  new Item('img/wine-glass.jpg', 'Wine Glass');
 }
 
 // grander callback that'll grab clicks as well as run the random image producer
@@ -105,20 +105,20 @@ function handleClick(event) {
     sectionElement.removeEventListener('click', handleClick);
 
     complete();
-    displayResults();
+    // displayResults();
     updateVotes();
 
     renderChart();
   }
 
-  function displayResults() {
-    for (var i = 0; i < Item.catalog.length; i++) {
-      var liElement = document.createElement('li');
-      liElement.textContent = (Item.catalog[i].name + ' has ' + Item.catalog[i].votes + ' votes, out of ' + Item.catalog[i].views + ' total views.');
+  // function displayResults() {
+  //   for (var i = 0; i < Item.catalog.length; i++) {
+  //     var liElement = document.createElement('li');
+  //     liElement.textContent = (Item.catalog[i].name + ' has ' + Item.catalog[i].votes + ' votes, out of ' + Item.catalog[i].views + ' total views.');
 
-      results.appendChild(liElement);
-    }
-  }
+  //     results.appendChild(liElement);
+  //   }
+  // }
 }
 
 // //callback function when an image is clicked
@@ -185,14 +185,12 @@ randomItem();
 function renderChart() {
   //access canvas element from the DOM
 
-
-
-
-
   var labels = [];
   var voteData = [];
   var colors = [];
 
+
+  // using John's RNG for colors
   for (var i in Item.catalog) {
     labels.push(Item.catalog[i].name);
     var pct = Math.round(Item.catalog[i].clicks / Item.catalog[i].views * 100);
@@ -203,8 +201,6 @@ function renderChart() {
   }
 
   // var randomColor = '#' + (Math.random() * 16777215).toString(16);
-
-  // var arrayOfColors = ['#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3',];
 
   // for (var i = 0, i < Item.catalog.length, i++)
   //     set backgroundColor = arrayOfColors[j],
