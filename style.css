@@ -20,11 +20,14 @@ header {
 
 #card1 p {
   display:inline-block;
+  font-size:65px;
 }
 
 #clickables {
   float: right;
+  position: relative; top: 40px;
   height: 100%;
+  /* vertical-align: middle; */
 }
 
 nav ul {
@@ -39,25 +42,38 @@ nav ul li {
   margin:0;
 }
 
-
-
-
 #imagesDisplayed {
-/* margin: auto; */
-/* display: inline-block; */
+height: 300px;
 width: 100%;
 background-color: rgb(255, 123, 0);
 }
 
 .imageslots {
   width: 33%;
+  margin-top: 50px;
   display: inline-block;
 }
 
+/* .imageslots:hover {
+  cursor: pointer;
+} */
+
+
 #imagesDisplayed img {
-  width: 250px;
-  height: 250px;
+  width: 200px;
+  height: 200px;
 }
+
+ #catalogOption:hover {
+  cursor: pointer;
+} 
+#catalogOption2:hover {
+  cursor: pointer;
+} 
+#catalogOption3:hover {
+  cursor: pointer;
+} 
+
 
 #catalogOption {
   margin: auto;
@@ -67,33 +83,21 @@ background-color: rgb(255, 123, 0);
 #catalogOption2 {
   margin: auto;
   display: block;
-
 }
 
 #catalogOption3 {
   margin: auto;
   display: block;
-
 }
 
-
-
-
-
-#votes {
-  float:right;
-}
-#votes {
-display: inline-block;
-background-color: aqua;
+canvas {
+  width: 400px;
+  height: 600px;
 }
 
-#info p {
-  float: right;
-}
-
-#info p {
-  width:70%;
-  display: inline-block;
-  background-color: yellow;
+button {
+  margin-left:60px;
+  background-color: purple;
+  border-color: purple;
+  color:white;
 }
