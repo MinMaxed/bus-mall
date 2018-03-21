@@ -31,8 +31,8 @@ function Item(filepath, name) {
   this.views = 0;
   this.votes = 0;
   Item.catalog.push(this);
-  itemNames.push(this.name);
 }
+// itemNames.push(this.name);
 
 //when to store
 // immediately on page load
@@ -57,6 +57,7 @@ function setupPictures() {
   var usablePics = JSON.parse(picAsString);
   if (usablePics && usablePics.length) {
     Item.catalog = usablePics;
+    console.log('loaded from LS');
     return;
   }
 
@@ -103,20 +104,16 @@ function handleClick(event) {
 
     sectionElement.removeEventListener('click', handleClick);
 
+    complete();
     displayResults();
-    // console.log(itemVotes[i]);
     updateVotes();
 
-    complete();
     renderChart();
   }
 
   function displayResults() {
     for (var i = 0; i < Item.catalog.length; i++) {
       var liElement = document.createElement('li');
-
-      console.log(Item.catalog[i]);
-
       liElement.textContent = (Item.catalog[i].name + ' has ' + Item.catalog[i].votes + ' votes, out of ' + Item.catalog[i].views + ' total views.');
 
       results.appendChild(liElement);
@@ -163,7 +160,7 @@ function randomItem() {
 //push votes into the objects
 function updateVotes() {
   for (var i in Item.catalog) {
-    itemVotes[i] = Item.catalog[i].votes;
+    itemVotes.push(Item.catalog[i].votes);
   }
 }
 
@@ -187,25 +184,43 @@ randomItem();
 
 function renderChart() {
   //access canvas element from the DOM
-  var context = document.getElementById('catalog-chart').getContext('2d');
+
+
+
+
+
+  var labels = [];
+  var voteData = [];
+  var colors = [];
+
+  for (var i in Item.catalog) {
+    labels.push(Item.catalog[i].name);
+    var pct = Math.round(Item.catalog[i].clicks / Item.catalog[i].views * 100);
+    voteData.push(pct);
+    // Google search for "JS Random HEX Color" ... magic!
+    var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+    colors.push(randomColor);
+  }
 
   // var randomColor = '#' + (Math.random() * 16777215).toString(16);
 
-  var arrayOfColors = ['#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3',];
+  // var arrayOfColors = ['#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3', '#800000', '#c000c0', '#f0d000', '#72ba3a', '#0056b3',];
 
   // for (var i = 0, i < Item.catalog.length, i++)
   //     set backgroundColor = arrayOfColors[j],
   // if ( j > arrayofColors.lenght)
   // reset arrayOfColors;
-
+  console.log(itemVotes);
+  var context = document.getElementById('catalog-chart').getContext('2d');
   new Chart(context, {
     type: 'bar',
     data: {
-      labels: itemNames,
+      labels: labels,
       datasets: [{
+        // barPercentage: 1,
         label: 'Votes Per Item',
         data: itemVotes,
-        backgroundColor: arrayOfColors,
+        backgroundColor: colors,
       }]
 
     },
