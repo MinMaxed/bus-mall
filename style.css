@@ -5,7 +5,6 @@
 body {
   width:100%;
   background: radial-gradient(circle, rgb(0, 255, 242), rgb(0, 132, 255), rgb(113, 0, 128));
-
 }
 
 header {
@@ -29,7 +28,6 @@ header {
   float: right;
   position: relative; top: 40px;
   height: 100%;
-  /* vertical-align: middle; */
 }
 
 nav ul {
@@ -80,14 +78,12 @@ width: 100%;
   margin: auto;
   display: block;
   border:solid black;
-
 }
 
 #catalogOption3 {
   margin: auto;
   display: block;
   border:solid black;
-
 }
 
 canvas {
