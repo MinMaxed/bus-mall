@@ -150,7 +150,6 @@ function randomItem() {
   imgElement2.alt = Item.catalog[randomIndex2].name;
   Item.catalog[randomIndex2].views++;
 
-
   imgElement3.src = Item.catalog[randomIndex3].filepath;
   imgElement3.alt = Item.catalog[randomIndex3].name;
   Item.catalog[randomIndex3].views++;
@@ -174,20 +173,25 @@ function complete() {
   localStorage.setItem('items', saveResults);
 }
 
-
 setupPictures();
-
 
 randomItem();
 
-// CHART STUFF
 
+
+// CHART STUFF
 function renderChart() {
   //access canvas element from the DOM
 
   var labels = [];
   var voteData = [];
   var colors = [];
+
+  //my RNG for colors array psuedocode from before 
+  // for (var i = 0, i < Item.catalog.length, i++)
+  //     set backgroundColor = arrayOfColors[j],
+  // if ( j > arrayofColors.lenght)
+  // reset arrayOfColors;
 
 
   // using John's RNG for colors
@@ -200,15 +204,10 @@ function renderChart() {
     colors.push(randomColor);
   }
 
-  // var randomColor = '#' + (Math.random() * 16777215).toString(16);
-
-  // for (var i = 0, i < Item.catalog.length, i++)
-  //     set backgroundColor = arrayOfColors[j],
-  // if ( j > arrayofColors.lenght)
-  // reset arrayOfColors;
   console.log(itemVotes);
+
   var context = document.getElementById('catalog-chart').getContext('2d');
-  new Chart(context, {
+  var chart = new Chart(context, {
     type: 'bar',
     data: {
       labels: labels,
@@ -221,9 +220,24 @@ function renderChart() {
 
     },
     options: {
+      legend: {
+        labels: {
+          fontColor: "white",
+          fontSize: 18,
+        }
+      },
       scales: {
         yAxes: [{
           ticks: {
+            fontColor: 'white',
+            beginAtZero: true
+          }
+        }],
+        xAxes: [{
+          ticks: {
+            fontColor: "white",
+            fontSize: 14,
+            stepSize: 1,
             beginAtZero: true
           }
         }]
