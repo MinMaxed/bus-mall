@@ -197,6 +197,7 @@ function renderChart() {
   // using John's RNG for colors
   for (var i in Item.catalog) {
     labels.push(Item.catalog[i].name);
+
     var pct = Math.round(Item.catalog[i].clicks / Item.catalog[i].views * 100);
     voteData.push(pct);
     // Google search for "JS Random HEX Color" ... magic!
@@ -222,7 +223,7 @@ function renderChart() {
     options: {
       legend: {
         labels: {
-          fontColor: "white",
+          fontColor: 'white',
           fontSize: 18,
         }
       },
