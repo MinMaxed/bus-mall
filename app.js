@@ -183,7 +183,6 @@ function renderChart() {
   //access canvas element from the DOM
 
   var labels = [];
-  var voteData = [];
   var colors = [];
 
   //my RNG for colors array psuedocode from before
@@ -197,8 +196,7 @@ function renderChart() {
   for (var i in Item.catalog) {
     labels.push(Item.catalog[i].name);
 
-    var pct = Math.round(Item.catalog[i].clicks / Item.catalog[i].views * 100);
-    voteData.push(pct);
+ 
     // Google search for "JS Random HEX Color" ... magic!
     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     colors.push(randomColor);
