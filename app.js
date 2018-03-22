@@ -153,7 +153,6 @@ function randomItem() {
   imgElement3.src = Item.catalog[randomIndex3].filepath;
   imgElement3.alt = Item.catalog[randomIndex3].name;
   Item.catalog[randomIndex3].views++;
-
 }
 
 //push votes into the objects
@@ -187,7 +186,7 @@ function renderChart() {
   var voteData = [];
   var colors = [];
 
-  //my RNG for colors array psuedocode from before 
+  //my RNG for colors array psuedocode from before
   // for (var i = 0, i < Item.catalog.length, i++)
   //     set backgroundColor = arrayOfColors[j],
   // if ( j > arrayofColors.lenght)
@@ -208,7 +207,7 @@ function renderChart() {
   console.log(itemVotes);
 
   var context = document.getElementById('catalog-chart').getContext('2d');
-  var chart = new Chart(context, {
+  new Chart(context, {
     type: 'bar',
     data: {
       labels: labels,
@@ -218,7 +217,6 @@ function renderChart() {
         data: itemVotes,
         backgroundColor: colors,
       }]
-
     },
     options: {
       legend: {
@@ -236,7 +234,7 @@ function renderChart() {
         }],
         xAxes: [{
           ticks: {
-            fontColor: "white",
+            fontColor: 'white',
             fontSize: 14,
             stepSize: 1,
             beginAtZero: true
