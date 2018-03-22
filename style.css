@@ -4,12 +4,15 @@
 
 body {
   width:100%;
+  background: radial-gradient(circle, rgb(0, 255, 242), rgb(0, 132, 255), rgb(113, 0, 128));
+
 }
 
 header {
-  display: inline-block;
-  width: 100%;
-  background-color: violet;
+  display: block;
+  width: 100vw;
+  height: 70px;
+  background-color:rgb(214, 24, 214);
 }
 
 #card1 {
@@ -19,12 +22,14 @@ header {
 
 #card1 p {
   display:inline-block;
+  font-size:65px;
 }
 
 #clickables {
   float: right;
+  position: relative; top: 40px;
   height: 100%;
-  
+  /* vertical-align: middle; */
 }
 
 nav ul {
@@ -39,58 +44,61 @@ nav ul li {
   margin:0;
 }
 
-
-#resultsChart {
-  float: left;
-  width:27%;
-  background-color: rgb(9, 255, 0);
-}
-
-#results {
-  list-style-type:none;
-  margin-left: .5em;
-
-}
-
-#results li {
-  padding:.5em;
-}
-
-
 #imagesDisplayed {
-  float:right;
-  width:70%;
-  background-color: rgb(255, 123, 0);
+height: 300px;
+width: 100%;
+}
+
+.imageslots {
+  width: 33%;
+  margin-top: 50px;
+  display: inline-block;
 }
 
 #imagesDisplayed img {
-  width: 250px;
+  width: 200px;
+  height: 200px;
 }
 
-#imagesDisplayed {
-display: block;
-margin: 0 auto;
+ #catalogOption:hover {
+  cursor: pointer;
+} 
+#catalogOption2:hover {
+  cursor: pointer;
+} 
+#catalogOption3:hover {
+  cursor: pointer;
+} 
+
+#catalogOption {
+  margin: auto;
+  display: block;
+  border:solid black;
 }
 
-#imagesDisplayed li {
-  list-style-type: none;
-  display: inline-block;
+#catalogOption2 {
+  margin: auto;
+  display: block;
+  border:solid black;
+
 }
 
-#votes {
-  float:right;
-}
-#votes {
-display: inline-block;
-background-color: aqua;
+#catalogOption3 {
+  margin: auto;
+  display: block;
+  border:solid black;
+
 }
 
-#info p {
-  float: right;
+canvas {
+  width: 400px;
+  height: 600px;
 }
 
-#info p {
-  width:70%;
-  display: inline-block;
-  background-color: yellow;
+button {
+  margin-left:60px;
+  margin-bottom: 20px;
+  background-color: rgb(0, 128, 17);
+  border-color: rgb(128, 0, 0);
+  color:white;
 }

@@ -4,10 +4,12 @@ project description:
 Cycle various randomly generated images, 3 at a time, with no immediate repeats. After 25 cycles, the Results of the image's appears and votes will be displayed in a list form, as well as a colored chart at the bottom. 
 
 
+3/21: 
+Chart now displays in random colors, added a restart button
+
 
 3/20:
 Updated to include a Chart display, and made the Results more legible. 
-
 
 
 3/19:
