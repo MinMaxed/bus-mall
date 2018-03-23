@@ -96,7 +96,7 @@ function handleClick(event) {
     sectionElement.removeEventListener('click', handleClick);
 
     storeLocalData();
-    updateVotes();
+    summarizedVotes();
     renderChart();
   }
 }
@@ -136,7 +136,7 @@ function randomItem() {
 }
 
 //push votes into the objects
-function updateVotes() {
+function summarizedVotes() {
   for (var i in Item.catalog) {
     itemVotes.push(Item.catalog[i].votes);
   }
@@ -162,17 +162,11 @@ function renderChart() {
   var labels = [];
   var colors = [];
 
-  //my RNG for colors array psuedocode from before
-  // for (var i = 0, i < Item.catalog.length, i++)
-  //     set backgroundColor = arrayOfColors[j],
-  // if ( j > arrayofColors.lenght)
-  // reset arrayOfColors;
 
   // re-gen labels with random colors for each instance of the chart.
   for (var i in Item.catalog) {
     labels.push(Item.catalog[i].name);
 
-    // Google search for "JS Random HEX Color" ... magic!
     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     colors.push(randomColor);
   }
