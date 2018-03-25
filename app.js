@@ -25,22 +25,6 @@ function Item(filepath, name) {
   Item.catalog.push(this);
 }
 
-//when to store
-// immediately on page load
-//Pro: they are there for next time
-// Con: Zeros
-
-// At the very end of page load
-//Pro: stores all the values of clicks and views
-//cons: partial data not captured
-
-// after a pic load/click
-// pro: consistent and acurate data
-// con: potential scale issue (huge data)
-// con: Chatter (lots of actions happening)
-
-
-
 // new instances of Items
 function setupPictures() {
 
@@ -67,7 +51,7 @@ function setupPictures() {
   new Item('img/pen.jpg', 'Pen');
   new Item('img/pet-sweep.jpg', 'Pet Sweep');
   new Item('img/scissors.jpg', 'Scissors');
-  new Item('img/shark.jpg', 'shark');
+  new Item('img/shark.jpg', 'Shark');
   new Item('img/sweep.png', 'Sweep');
   new Item('img/tauntaun.jpg', 'Tauntaun');
   new Item('img/unicorn.jpg', 'Unicorn');
@@ -170,7 +154,6 @@ function renderChart() {
     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     colors.push(randomColor);
   }
-
   var context = document.getElementById('catalog-chart').getContext('2d');
   new Chart(context, {
     type: 'bar',
