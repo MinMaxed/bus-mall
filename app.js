@@ -17,14 +17,6 @@ var imgElement3 = document.getElementById('catalogOption3');
 
 var sectionElement = document.getElementById('imagesDisplayed');
 
-// event listener to check for images on click
-// imgElement.addEventListener('click',handleClick);
-// imgElement2.addEventListener('click',handleClick);
-// imgElement3.addEventListener('click',handleClick);
-
-// var results = document.getElementById('results');
-// Item Constructor to generate items and put them into the catalog
-
 function Item(filepath, name) {
   this.filepath = filepath;
   this.name = name;
@@ -32,23 +24,6 @@ function Item(filepath, name) {
   this.votes = 0;
   Item.catalog.push(this);
 }
-// itemNames.push(this.name);
-
-//when to store
-// immediately on page load
-//Pro: they are there for next time
-// Con: Zeros
-
-// At the very end of page load
-//Pro: stores all the values of clicks and views
-//cons: partial data not captured
-
-// after a pic load/click
-// pro: consistent and acurate data
-// con: potential scale issue (huge data)
-// con: Chatter (lots of actions happening)
-
-
 
 // new instances of Items
 function setupPictures() {
@@ -76,7 +51,7 @@ function setupPictures() {
   new Item('img/pen.jpg', 'Pen');
   new Item('img/pet-sweep.jpg', 'Pet Sweep');
   new Item('img/scissors.jpg', 'Scissors');
-  new Item('img/shark.jpg', 'shark');
+  new Item('img/shark.jpg', 'Shark');
   new Item('img/sweep.png', 'Sweep');
   new Item('img/tauntaun.jpg', 'Tauntaun');
   new Item('img/unicorn.jpg', 'Unicorn');
@@ -104,21 +79,10 @@ function handleClick(event) {
 
     sectionElement.removeEventListener('click', handleClick);
 
-    complete();
-    // displayResults();
-    updateVotes();
-
+    storeLocalData();
+    summarizedVotes();
     renderChart();
   }
-
-  // function displayResults() {
-  //   for (var i = 0; i < Item.catalog.length; i++) {
-  //     var liElement = document.createElement('li');
-  //     liElement.textContent = (Item.catalog[i].name + ' has ' + Item.catalog[i].votes + ' votes, out of ' + Item.catalog[i].views + ' total views.');
-
-  //     results.appendChild(liElement);
-  //   }
-  // }
 }
 
 // //callback function when an image is clicked
@@ -156,7 +120,7 @@ function randomItem() {
 }
 
 //push votes into the objects
-function updateVotes() {
+function summarizedVotes() {
   for (var i in Item.catalog) {
     itemVotes.push(Item.catalog[i].votes);
   }
@@ -165,18 +129,15 @@ function updateVotes() {
 //connect callback function to DOM
 sectionElement.addEventListener('click', handleClick);
 
-
-function complete() {
+function storeLocalData() {
   //save to local storage
   var saveResults = JSON.stringify(Item.catalog);
   localStorage.setItem('items', saveResults);
 }
-
+//initial load
 setupPictures();
 
 randomItem();
-
-
 
 // CHART STUFF
 function renderChart() {
@@ -185,25 +146,14 @@ function renderChart() {
   var labels = [];
   var colors = [];
 
-  //my RNG for colors array psuedocode from before
-  // for (var i = 0, i < Item.catalog.length, i++)
-  //     set backgroundColor = arrayOfColors[j],
-  // if ( j > arrayofColors.lenght)
-  // reset arrayOfColors;
 
-
-  // using John's RNG for colors
+  // re-gen labels with random colors for each instance of the chart.
   for (var i in Item.catalog) {
     labels.push(Item.catalog[i].name);
 
- 
-    // Google search for "JS Random HEX Color" ... magic!
     var randomColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
     colors.push(randomColor);
   }
-
-  console.log(itemVotes);
-
   var context = document.getElementById('catalog-chart').getContext('2d');
   new Chart(context, {
     type: 'bar',
