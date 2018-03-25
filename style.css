@@ -13,17 +13,11 @@ header {
   height: 150px;
   background-color:rgb(214, 24, 214);
 }
-/* 
-#card1 {
-  float: left;
-  height: 100%;
-} */
 
 #card1 p {
   display:inline-block;
   font-size:65px;
   font-family: 'Faster One', cursive;
-  /* margin-top: 20px; */
 }
 
 #logo {
