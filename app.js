@@ -134,7 +134,7 @@ function storeLocalData() {
   var saveResults = JSON.stringify(Item.catalog);
   localStorage.setItem('items', saveResults);
 }
-
+//initial load
 setupPictures();
 
 randomItem();
